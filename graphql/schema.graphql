@@ -8,7 +8,9 @@ type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
 	articles: [Article!]! @all
-    article(id: Int! @eq): Article @find
+    article(user_id: Int! @eq): [Article] @all
+    greet(name: String!): String
+    allnews: String!
 }
 
 type Mutation {
@@ -17,10 +19,12 @@ type Mutation {
     logout: LogoutResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Logout@resolve")
     forgotPassword(input: ForgotPasswordInput! @spread): ForgotPasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\ForgotPassword@resolve")
     updateForgottenPassword(input: NewPasswordWithCodeInput @spread): ForgotPasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\ResetPassword@resolve")
-    register(input: RegisterInput @spread): RegisterResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Register@resolve")
+    registery(input: RegisterInput @spread): RegisterResponse! @field(resolver: "Registery@resolve")
     socialLogin(input: SocialLoginInput! @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\SocialLogin@resolve")
     verifyEmail(input: VerifyEmailInput! @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\VerifyEmail@resolve")
-    updatePassword(input: UpdatePassword! @spread): UpdatePasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\UpdatePassword@resolve") @guard(with: ["api"])
+    updateThePassword(input: UpdatePassword! @spread): UpdatePasswordResponse! @field(resolver: "UpdateThePassword@resolve") @guard(with: ["api"])
+	
+	createArticle(input: CreateArticleInput! @spread): Article! @create
 }
 
 type User {
@@ -30,6 +34,7 @@ type User {
 	birthday: Date!
     created_at: DateTime!
     updated_at: DateTime!
+	articles: [Article!]! @belongsToMany(relation: "articles")
 }
 
 type Article {
@@ -43,3 +48,11 @@ type Article {
     updated_at: DateTime!
 }
 
+input CreateArticleInput {
+    title: String!
+    author_name: String!
+    published_at: Date!
+    content: String!
+    article_url: String!
+    image_url: String!
+}

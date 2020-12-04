@@ -14,7 +14,8 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
-
+	
+	
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -70,6 +71,7 @@ return [
         'array' => [
             'transport' => 'array',
         ],
+
     ],
 
     /*

@@ -38,6 +38,18 @@ type RegisterResponse {
     status: RegisterStatuses!
 }
 
+
+type ArticleResponse {
+    id: ID!
+    title: String!
+    author_name: String!
+    published_at: Date!
+    content: String!
+    article_url: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
 type UpdatePasswordResponse {
     status: String!
     message: String
@@ -62,6 +74,7 @@ input NewPasswordWithCodeInput {
 input RegisterInput {
     name: String! @rules(apply: ["required", "string"])
     email: String! @rules(apply: ["required", "email", "unique:users,email"])
+    birthday: Date! @rules(apply: ["required"])
     password: String! @rules(apply: ["required", "confirmed", "min:8"])
     password_confirmation: String!
 }
@@ -76,6 +89,7 @@ input VerifyEmailInput {
 }
 
 input UpdatePassword {
+    username: String! @rules(apply: ["required", "email"])
     old_password: String!
     password: String! @rules(apply: ["required", "confirmed", "min:8"])
     password_confirmation: String!

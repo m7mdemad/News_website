@@ -44,8 +44,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 	
-	public function articles(): BelongsToMany
-    {
-      return $this->belongsToMany(Article::class, 'article_user', 'user_id', 'article_id');
-    }
+	// public function articles(): BelongsToMany
+    // {
+    //   return $this->belongsToMany(Article::class, 'article_user', 'user_id', 'article_id');
+    // }
 }
