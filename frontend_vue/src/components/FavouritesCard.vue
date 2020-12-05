@@ -40,25 +40,19 @@ export default {
   name: 'MainContent', 
   data () {
       return {
-       changeBackgroundColor: true,
+       changeBackgroundColor: false,
       }
     }, 
-  props: {
-      article: Object,
-      user_id: Number,
-      user_token: String
+  props:{
+      id: Number
+  },
+  created(){
+
   },
   methods: {
             isPressed(){  
-              if(!this.changeBackgroundColor) {return;}        
+              if(this.changeBackgroundColor) {return;}        
               
-              console.log( this.user_id,
-                  this.article.title, 
-                  this.article.author,
-                  this.article.publishedAt,
-                  this.article.description,
-                  this.article.url,
-                  this.article.urlToImage)
               this.changeBackgroundColor = !this.changeBackgroundColor;
               this.$apollo.mutate({
               // Query

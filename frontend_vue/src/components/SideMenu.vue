@@ -108,10 +108,6 @@ export default {
         this.$emit('selectsource',src_str)
       },
 
-      getImgUrl(pic) {
-         return require('../assets/images/'+pic+'.png')
-      },
-
       selectSource(source){
         this.$emit('selectsource',source)
       }

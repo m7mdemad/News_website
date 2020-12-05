@@ -22,9 +22,10 @@ type Mutation {
     registery(input: RegisterInput @spread): RegisterResponse! @field(resolver: "Registery@resolve")
     socialLogin(input: SocialLoginInput! @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\SocialLogin@resolve")
     verifyEmail(input: VerifyEmailInput! @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\VerifyEmail@resolve")
-    updateThePassword(input: UpdatePassword! @spread): UpdatePasswordResponse! @field(resolver: "UpdateThePassword@resolve") @guard(with: ["api"])
+    updateThePassword(input: UpdatePassword! @spread): UpdatePasswordResponse! @field(resolver: "UpdateThePassword@resolve") @guard(with: ["api"]) 
 	
-	createArticle(input: CreateArticleInput! @spread): Article! @create
+	createArticle(input: CreateArticleInput! @spread): Article! @middleware(checks: ["auth:api"]) @create
+    dropArticle(input:dropArticleInput! @spread): dropArticleResponse!  @middleware(checks: ["auth:api"]) @field(resolver: "DeleteArticle@resolve") 
 }
 
 type User {
@@ -49,10 +50,20 @@ type Article {
 }
 
 input CreateArticleInput {
+    user_id: Int!
     title: String!
     author_name: String!
     published_at: Date!
     content: String!
     article_url: String!
     image_url: String!
+}
+
+input dropArticleInput{
+    user_id: Int!
+    title: String!
+}
+
+type dropArticleResponse{
+    status: String!
 }
