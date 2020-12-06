@@ -1,0 +1,13 @@
+News Api:
+- https://newsapi.org/docs
+
+Back-end(laravel, lighthouse):
+- https://dev.to/joselfonseca/graphql-auth-with-passport-and-lighthouse-php-14g5
+- https://www.youtube.com/playlist?list=PLEhEHUEU3x5qsA5JnRzhgOghrH9Vqz4cg
+- https://lighthouse-php.com/4.8/the-basics/fields.html
+
+Front-end(vue.js):
+- https://www.youtube.com/playlist?list=PLEhEHUEU3x5qsA5JnRzhgOghrH9Vqz4cg
+- https://vuetifyjs.com/en/
+- https://apollo.vuejs.org/
+- https://buttercms.com/blog/build-a-beautiful-animated-news-app-with-vuejs-and-vuetify?ref=madewithvuejs.com

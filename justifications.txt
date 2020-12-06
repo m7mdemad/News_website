@@ -1,0 +1,10 @@
+- Why MySQL?
+Orginally I wanted to use MongoDB but I also wanted to use graphQL but after little research about Lighhouse(package I used to apply graphQL) with mongoDB if felt so risky to try using mongoDB so I decided to use MySQL and switch to mongoDB if I got time.
+
+My original mongoDB design was a single collection for users where every user has array of favourite articles
+
+
+- Connect to newsapi.org
+newsapi is a rest api so I thought to access it in the backend and send the data through the back-end using graphQL but I found it makes no difference because I have already used the rest request once already and added unneeded network overhead. So, I accessed it from the front-end directly.
+
+
