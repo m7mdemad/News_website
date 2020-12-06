@@ -12,8 +12,8 @@
         <v-btn depressed @click="goTologin()" color="blue">Login</v-btn>
     </div>
     <div v-else>
-        <v-btn depressed @click="goToFavourites()" color="green">Favourites</v-btn>
-        <v-btn depressed  @click="logOut()" color="blue">Logout</v-btn>
+        <v-btn depressed  @click="goTofavourites()" color="blue">Favourites</v-btn>
+        <v-btn depressed  @click="logOut()" color="red">Logout</v-btn>
     </div>
   </v-toolbar>
   <v-content>
@@ -21,7 +21,7 @@
       <MainContent :user_token="token" :user_id="id" :articles="articles"></MainContent> 
     </v-container>
    </v-content>
-      <router-view/>
+      <!-- <router-view/> -->
 </v-app>
   
 </template>
@@ -84,7 +84,7 @@ export default {
             goToregister(){
               this.$router.push('register').catch(()=>{});
             },
-            goToFavourites(){
+            goTofavourites(){
               this.$router.push('favourites').catch(()=>{});
             },
             logOut(){

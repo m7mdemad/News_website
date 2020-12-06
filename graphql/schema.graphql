@@ -45,6 +45,7 @@ type Article {
     published_at: Date!
     content: String!
     article_url: String!
+    image_url: String!
     created_at: DateTime!
     updated_at: DateTime!
 }

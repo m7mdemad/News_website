@@ -2,7 +2,7 @@
               <v-card class="my-3" hover>
                 <v-img
                   height="350px"
-                  v-bind:src="article.urlToImage"
+                  v-bind:src="article.image_url"
                 ></v-img>
                   <v-container fill-height fluid>
                     <v-layout>
@@ -12,22 +12,18 @@
                     </v-layout>
                   </v-container>
                 <v-card-text>
-                  (written by: {{article.author}}, published at: {{article.publishedAt}}) {{ article.description }}
+                  (written by: {{article.author_name}}) {{ article.content }}
                 </v-card-text>
                 <v-card-actions>
-                  <v-chip small color="secondary" class="white--text">
-                    {{article.source.name}}
-                  </v-chip>
                   <v-spacer></v-spacer>
                   
                   <v-btn flat icon @click="isPressed()" :style="{
-           color: changeBackgroundColor ? 'grey' : 'red'
-           }" >
+                                            color: changeBackgroundColor ? 'grey' : 'red'}" >
                     <v-icon>favorite</v-icon>
                  </v-btn>
                   <v-spacer></v-spacer>
 
-         <v-btn small replace color="info" v-bind:href="article.url" target="_blank" >Read More</v-btn>
+                 <v-btn small replace color="blue" v-bind:href="article.article_url" target="_blank" >Read More</v-btn>
                 </v-card-actions>
               </v-card>
 
@@ -43,39 +39,34 @@ export default {
        changeBackgroundColor: false,
       }
     }, 
-  props:{
-      id: Number
-  },
-  created(){
-
+  props: {
+      article: Object,
+      user_id: Number,
+      user_token: String
   },
   methods: {
             isPressed(){  
               if(this.changeBackgroundColor) {return;}        
               
-              this.changeBackgroundColor = !this.changeBackgroundColor;
+              
               this.$apollo.mutate({
               // Query
-              mutation: gql`mutation ($data: CreateArticleInput!) {
-                createArticle(input: $data) {
-                  title
+              mutation: gql`mutation ($data: dropArticleInput!) {
+                dropArticle(input: $data) {
+                  status
                 }
               }`,
               // Parameters
               variables: {
                 data: {
-                  user_id: this.user_id,
-                  title: this.article.title, 
-                  author_name: this.article.author,
-                  published_at: "2020-12-01",
-                  content: this.article.description,
-                  article_url: this.article.url,
-                  image_url: this.article.urlToImage
+                  user_id: 51,
+                  title: this.article.title
                   
                 }
               }
             }).then(() => {
-              alert('Item added to the favourites')
+              this.changeBackgroundColor = !this.changeBackgroundColor;
+            //   alert('Item removed from the favourites')
             }).catch((error) => {
               alert('Please sign in, if you are already signed in then something went wrong!')
               console.error(error)
