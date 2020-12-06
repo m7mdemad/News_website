@@ -1,19 +1,31 @@
 <template>
-  <div>
-    <form action="" method="POST" @submit.prevent="login">
-      <div>
-        <input required type="email" v-model="username" name="username" id="username" placeholder="Email">
-      </div>
+<v-app light>
+  <v-content :style="{position: 'fixed', top: '20%', left: '40%'}">
+    <v-container fluid>
+        <form action="" method="POST" @submit.prevent="login">
+            <h3 center>Log In</h3>
 
-      <div>
-        <input required type="password" v-model="password" name="password" id="password" placeholder="Enter your password">
-      </div>
+            <div class="form-group">
+                <label>Email address</label>
+                <input required class="form-control form-control-lg" type="email" v-model="username" name="username" id="username" placeholder="Email">
+            </div>
 
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
-  </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input required class="form-control form-control-lg" type="password" v-model="password" name="password" id="password" placeholder="Enter your password">
+            </div>
+
+
+            <button type="submit" class="btn btn-dark btn-lg btn-block">Log In</button>
+
+            <p class="forgot-password text-right mt-2 mb-4">
+                <router-link to="/forgotpassword">Forgot password ?</router-link>
+            </p>
+
+        </form>    
+    </v-container>
+   </v-content>
+</v-app>
 </template>
 
 <script>

@@ -1,26 +1,54 @@
 <template>
-  <div>
+<v-app light>
+  <v-content :style="{position: 'fixed', top: '20%', left: '40%'}">
+    <v-container fluid>
+        <form action="" method="POST" @submit.prevent="updatePassword">
+            <h3 center>Update password</h3>
+
+            <div>
+              <label>Old password:</label>
+              <input required class="form-control form-control-lg" min=8 type="password" v-model="oldpassword" name="oldpassword" id="oldpassword" placeholder="Old password">
+            </div>
+
+        <div>
+          <label>New password:</label>
+          <input required class="form-control form-control-lg" type="password" min=8 v-model="newpassword" name="newpassword" id="newpassword" placeholder="New password">
+        </div>
+
+        <div>
+          <label>Confirm new password:</label>
+          <input required class="form-control form-control-lg" type="password" min=8 v-model="newpassword2" name="newpassword2" id="newpassword2" placeholder="Re-enter new password">
+        </div>
+
+
+            <button type="submit" class="btn btn-dark btn-lg btn-block">Update password</button>
+
+        </form>    
+    </v-container>
+   </v-content>
+</v-app>
+  <!-- <div>
     <form action="" method="POST" @submit.prevent="updatePassword">
 
       <div>
-          <b>Old password:</b>
-        <input required min=8 type="password" v-model="oldpassword" name="oldpassword" id="oldpassword" placeholder="Old password">
+        <label>Old password:</label>
+        <input required class="form-control form-control-lg" min=8 type="password" v-model="oldpassword" name="oldpassword" id="oldpassword" placeholder="Old password">
       </div>
 
         <div>
-          <b>New password:</b>
-        <input required type="password" min=8 v-model="newpassword" name="newpassword" id="newpassword" placeholder="New password">
+          <label>New password:</label>
+        <input required class="form-control form-control-lg" type="password" min=8 v-model="newpassword" name="newpassword" id="newpassword" placeholder="New password">
       </div>
 
       <div>
-          <b>Confirm new password:</b>
-        <input required type="password" min=8 v-model="newpassword2" name="newpassword2" id="newpassword2" placeholder="Re-enter new password">
+        <label>Confirm new password:</label>
+        <input required class="form-control form-control-lg" type="password" min=8 v-model="newpassword2" name="newpassword2" id="newpassword2" placeholder="Re-enter new password">
       </div>
       <div>
         <button type="submit">Update password</button>
       </div>
     </form>
-  </div>
+  </div> -->
 </template>
 
 <script>

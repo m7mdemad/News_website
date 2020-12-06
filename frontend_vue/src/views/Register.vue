@@ -1,23 +1,30 @@
-<template>
-  <div>
-    <form action="" method="POST" @submit.prevent="register">
-      <div>
-        <input required type="text" v-model="name" name="name" id="name" placeholder="Name">
-      </div>
-      
-      <div>
-        <input required type="date" v-model="birthday" name="birthday" id="birthday" placeholder="Birthday">
-      </div>
+<template >
+<v-app light>
+  <v-content :style="{position: 'fixed', top: '20%', left: '40%'}">
+    <v-container fluid>
+        <form action="" method="POST" @submit.prevent="register">
+            <h3 center>Register</h3>
 
-      <div>
-        <input required type="email" v-model="email" name="email" id="email" placeholder="Email">
-      </div>
+            <div class="form-group">
+                <label>Email address</label>
+                <input required class="form-control form-control-lg"  type="email" v-model="email" name="email" id="email" placeholder="Email">
+            </div>
 
-      <div>
-        <button type="submit">Sign up</button>
-      </div>
-    </form>
-  </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input required class="form-control form-control-lg" type="text" v-model="name" name="name" id="name" placeholder="Name">
+            </div>
+
+            <div class="form-group">
+                <label>Birthday</label>
+                <input required class="form-control form-control-lg" type="date" v-model="birthday" name="birthday" id="birthday" placeholder="Birthday">
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-lg btn-block">Register</button>
+        </form>    
+    </v-container>
+   </v-content>
+</v-app>
 </template>
 
 <script>
@@ -59,7 +66,7 @@ export default {
           }
         }
       }).then(() => {
-        alert('Logged in successfully, please use the password sent to your email')       
+        alert('Signned up successfully, please use the password sent to your email')       
         this.$router.push('/login')
       }).catch((error) => {
         alert(error)

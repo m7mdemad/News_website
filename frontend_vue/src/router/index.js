@@ -48,4 +48,20 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if((to.name === 'updatepassword' && localStorage.getItem("apollo-token") === null) ||
+     (to.name === 'favourites' && localStorage.getItem("apollo-token") === null))
+  {
+        next({ path: 'login'})
+  }
+
+  else if((to.name === 'login' && localStorage.getItem("apollo-token") !== null) ||
+          (to.name === 'forgotpassword' && localStorage.getItem("apollo-token") !== null))
+  {
+      next({ path:'/' })
+  }
+
+  else next()
+})
+
 export default router

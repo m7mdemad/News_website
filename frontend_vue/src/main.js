@@ -7,6 +7,9 @@ import 'vuetify/dist/vuetify.min.css';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '@/assets/css/main.css'
+
 import { createProvider } from './vue-apollo'
 
 Vue.use(Vuetify)

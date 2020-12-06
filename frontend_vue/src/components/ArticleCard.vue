@@ -81,7 +81,7 @@ export default {
                 }
               }
             }).then(() => {
-              alert('Item added to the favourites')
+              alert('Article added to the favourites')
             }).catch((error) => {
               alert('Please sign in, if you are already signed in then something went wrong!')
               console.error(error)

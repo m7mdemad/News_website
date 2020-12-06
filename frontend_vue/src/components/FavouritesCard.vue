@@ -66,7 +66,7 @@ export default {
               }
             }).then(() => {
               this.changeBackgroundColor = !this.changeBackgroundColor;
-            //   alert('Item removed from the favourites')
+              alert('Article removed from the favourites')
             }).catch((error) => {
               alert('Please sign in, if you are already signed in then something went wrong!')
               console.error(error)

@@ -1,5 +1,23 @@
 <template>
-  <div>
+<v-app light>
+  <v-content :style="{position: 'fixed', top: '20%', left: '40%'}">
+    <v-container fluid>
+        <form action="" method="POST" @submit.prevent="sendPassword">
+            <h3 center>Forgot password</h3>
+
+            <div class="form-group">
+                <label>Email address</label>
+                <input required class="form-control form-control-lg" type="email" v-model="email" name="email" id="email" placeholder="Email">
+            </div>
+
+
+            <button type="submit" class="btn btn-dark btn-lg btn-block">Send Email</button>
+        </form>    
+    </v-container>
+   </v-content>
+</v-app>
+
+  <!-- <div>
     <form action="" method="POST" @submit.prevent="sendPassword">
 
       <div>
@@ -10,7 +28,7 @@
         <button type="submit">Send the email</button>
       </div>
     </form>
-  </div>
+  </div> -->
 </template>
 
 <script>
