@@ -6,5 +6,7 @@ My original mongoDB design was a single collection for users where every user ha
 
 - Connect to newsapi.org
 newsapi is a rest api so I thought to access it in the backend and send the data through the back-end using graphQL but I found it makes no difference because I have already used the rest request once already and added unneeded network overhead. So, I accessed it from the front-end directly.
+**** Update ****
+After thinking this was a mistake the connection key should not exist in the front-end I will edit the project so the news api is accessed from the backend
 
 
