@@ -10,7 +10,8 @@ type Query {
 	articles: [Article!]! @all
     article(user_id: Int! @eq): [Article] @all
     greet(name: String!): String
-    allnews: String!
+    allnews: [Topheadlines]  @field(resolver: "Allnews@resolve")
+    filterednews(filters: String!): [Topheadlines]  @field(resolver: "Filterednews@resolve")
 }
 
 type Mutation {
@@ -67,4 +68,20 @@ input dropArticleInput{
 
 type dropArticleResponse{
     status: String!
+}
+
+type Source {
+    id: String!
+    name: String!
+}
+
+type Topheadlines {
+    source: Source!
+    author: String!
+    title: String!
+    description: String!
+    url: String!
+    urlToImage: String!
+    publishedAt: String!
+    content: String!
 }

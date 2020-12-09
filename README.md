@@ -45,6 +45,10 @@ MAIL_FROM_ADDRESS=null
 MAIL_FROM_NAME="${APP_NAME}"
 ```
 
+add your newapi.org key (just in case my key has expired)
+```
+NEWSAPI_KEY="Your key goes here"
+```
 
 4- Run te following command
 ```
@@ -74,11 +78,9 @@ const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:8000/
   wsEndpoint: null,
 ```
 
-7- Add your newsapi.org key to 'src/views/Homepage.vue'
-
-8- Run te following command
+7- Run te following command
 ```
 npm run serve
 ```
 
-9- The website is easy to use but I will upload a video with the name 'demo.mp4' to illustrate how to use the website very soon.
+9- The website is easy to use but a quick demo can be found under the name 'demo.mp4' to illustrate how to use the website.

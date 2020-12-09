@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-  <SideMenu :drawer="drawer"  :api_key="api_key" @selectsource="setResource" ></SideMenu><!--add this component in the template --> 
+  <SideMenu :drawer="drawer" @selectsource="setResource" ></SideMenu><!--add this component in the template --> 
 <v-toolbar fixed app light clipped-left color="primary" class="elevation-2">
     <v-toolbar-side-icon @click="drawer = !drawer"   class="white--text"></v-toolbar-side-icon>
     <v-spacer />
@@ -18,7 +18,7 @@
   </v-toolbar>
   <v-content>
     <v-container fluid>
-      <MainContent :user_token="token" :user_id="id" :articles="articles"></MainContent> 
+      <MainContent :user_token="token" :user_id="id" :articles="filterednews"></MainContent> 
     </v-container>
    </v-content>
       <!-- <router-view/> -->
@@ -26,8 +26,8 @@
   
 </template>
 <script>
+import gql from 'graphql-tag'
 import { onLogout} from '../vue-apollo.js'
-import axios from 'axios' 
 import MainContent from '../components/MainContent.vue' 
 import SideMenu from '../components/SideMenu.vue' // import the SideMenu component
 export default {
@@ -45,37 +45,55 @@ export default {
        user_id:-1,
        user_token: "",
        drawer: false,
-       notSigned: true,
-       api_key:'29fe467120be45df9be2ae506ae6d23b', 
-       articles: [],
-       errors: [] 
+       filters: "category=general&",
+       filterednews: []
       }
     },
+    
+    apollo: {
+        filterednews: {
+            query: gql`query filterednews($f: String!) {
+                filterednews(filters: $f){
+                  source{
+                    id
+                    name
+                  }
+                  author
+                  title
+                  description
+                  url
+                  urlToImage
+                  publishedAt
+                  content
+                }
+            }`,
+            variables() {
+                return{
+                  f: this.filters
+                }
+            },
+        }
+    },
+
     created () {
         this.user_id = this.id
         this.user_token = this.token
-      axios.get('https://newsapi.org/v2/top-headlines?sources=techcrunch,bbc-news&apiKey='+this.api_key)
-        .then(response => {
-          this.articles = response.data.articles
-          console.log(response.data.articles[0].name) // This will give you access to the full object
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
+        // this.$apollo.queries.filterednews.skip = true
      },
      //add the methodes events hadler with setResource() function
       methods: {
-            setResource(source){             axios.get('https://newsapi.org/v2/top-headlines?'+source+'apiKey='+this.api_key)
-              .then(response => {
-                this.articles = response.data.articles
-                if(this.articles.length === 0){
+            setResource(source){ 
+              console.log(source)
+                
+
+                if (source === "") {
+                  this.filters = "category=general&language=en&"
+                }
+                else { this.filters = source  }
+             
+                if(this.filterednews.length === 0){
                     alert('Sorry, No results found')
                 }
-                console.log(source)            
-              })
-              .catch(e => {
-                this.errors.push(e)
-              })
 
             },
             goTologin(){

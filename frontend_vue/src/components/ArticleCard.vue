@@ -59,7 +59,6 @@ export default {
                   this.article.description,
                   this.article.url,
                   this.article.urlToImage)
-              this.changeBackgroundColor = !this.changeBackgroundColor;
               this.$apollo.mutate({
               // Query
               mutation: gql`mutation ($data: CreateArticleInput!) {
@@ -81,6 +80,7 @@ export default {
                 }
               }
             }).then(() => {
+              this.changeBackgroundColor = !this.changeBackgroundColor;
               alert('Article added to the favourites')
             }).catch((error) => {
               alert('Please sign in, if you are already signed in then something went wrong!')

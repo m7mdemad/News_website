@@ -43,12 +43,12 @@
 
 <script>
 
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
 
    props: {
-      api_key: String,
+      // api_key: String,
       drawer: Boolean
 
     },
@@ -76,18 +76,18 @@ export default {
       }
   },
 
-  created () {
-    axios.get('https://newsapi.org/v2/sources?language=en&apiKey='+this.api_key)
-      .then(response => {
-        //this.articles = response.data.articles
-        this.sources = response.data.sources
-        console.log('data:')
-        console.log(response.data.sources) // This will give you access to the full object
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
-  },
+  // created () {
+  //   axios.get('https://newsapi.org/v2/sources?language=en&apiKey='+this.api_key)
+  //     .then(response => {
+  //       //this.articles = response.data.articles
+  //       this.sources = response.data.sources
+  //       console.log('data:')
+  //       console.log(response.data.sources) // This will give you access to the full object
+  //     })
+  //     .catch(e => {
+  //       this.errors.push(e)
+  //     })
+  // },
 
   methods: {
       filterResults() {

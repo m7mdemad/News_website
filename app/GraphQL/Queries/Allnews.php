@@ -1,7 +1,9 @@
 <?php
 
 namespace App\GraphQL\Queries;
+
 use NewsAPI;
+use Illuminate\Support\Facades\Http;
 
 class Allnews
 {
@@ -9,9 +11,15 @@ class Allnews
      * @param  null  $_
      * @param  array<string, mixed>  $args
      */
-    public function __invoke(): string
+	 
+	 
+	public function resolve($rootValue, array $args)
     {
-        $response = NewsAPI::sources()->all();
-		return $response[0]['author'];
+		
+		$url = 'https://newsapi.org/v2/top-headlines?sources=techcrunch,bbc-news&apiKey='.config('newsapi.api_key');
+		$response = Http::get($url);
+		
+		return $response['articles'];
     }
+	
 }
